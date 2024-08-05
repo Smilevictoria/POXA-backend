@@ -60,8 +60,8 @@ def GET_COMMON_QA(url, question):
     if len(data_list) > 1:
         combined_summaries = "\n\n".join(summarys)
         final_conversation = [
-            {"role": "system", "content": "你是一個專業的文章摘要助手，會根據輸入的文本生成300字的摘要。請使用繁體中文回覆。"},
-            {"role": "user", "content": f"請幫我根據{question}總結以下多篇文章的摘要:\n\n{combined_summaries}"}
+            {"role": "system", "content": "你是一個專業的文章分析助手，會根據輸入的文本回答具體問題並生成摘要。請使用繁體中文回覆。"},
+            {"role": "user", "content": f"請根據以下多篇文章的摘要回答問題:\n\n問題: {question}\n\n文章摘要:\n\n{combined_summaries}"}
         ]
 
         completion = client.chat.completions.create(

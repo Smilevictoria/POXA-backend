@@ -46,7 +46,7 @@ def get_topic_news(topic, top=3):
   return GET_NEWS_FAST(url, top)
 
 def get_week_summary():
-   print("Executing get_week_summary")
+   # print("Executing get_week_summary")
    data = GET_SUMMARY_GPT(GET_TEXT(POXA_WEEK))
 
    res = []
@@ -57,8 +57,6 @@ def get_week_summary():
    return res
 
 def get_qa_consult(question):
-    if not question:
-        return [{"type": "text", "content": "請問您有什麼問題？"}]
     answer = GET_COMMON_QA(POXA, question)
 
     res = []
@@ -217,15 +215,8 @@ def chat_with_bot():
     print(f"呼叫函式的參數: {function_call.arguments}")
 
     if function_call.name == "get_qa_consult":
-      if "question" not in function_call.arguments:
-        res.append(FORMAT_RESPONSE("text", {
-          "tag": "span",
-          "content": "請問您有什麼問題？"
-        }))
-      else:
-        final_res = call_function_by_name(function_call.name, eval(function_call.arguments))
-        res.extend(final_res)  
-        
+      final_res = call_function_by_name(function_call.name, eval(function_call.arguments))
+      res.extend(final_res)
       return jsonify({'response': res})
     
     final_res = call_function_by_name(function_call.name, eval(function_call.arguments))
