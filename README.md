@@ -1,10 +1,10 @@
 # POXT-backend
-
+ 
 ## 建立環境
-`python -m venv <<環境名稱>>`
+`virtualenv <<環境名稱>>`
 
 ## 進入環境
-`<<環境名稱>>/Scripts/activate`
+`source <<環境名稱>>/bin/activate`
 
 註：退出環境指令為 `deactivate`
 
@@ -14,10 +14,7 @@
 註：把環境所需套件變成 requirements.txt 指令為 `pip freeze > requirements.txt`
 
 ## 加入環境變數
-`set OPENAI_API_KEY=<<密鑰>>`
+`export OPENAI_API_KEY=<<密鑰>>`
 
 ## 開啟後端
-`python main.py`
-
-## 其他資料
-若有其他疑惑，可參考[其他文件](https://hackmd.io/@qrWOBWniTYy5n_mcE3dshQ/BydyQjEJ3)
+`python3 main.py`
