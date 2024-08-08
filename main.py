@@ -212,6 +212,7 @@ def chat_with_bot():
     print(f"呼叫函式的參數: {function_call.arguments}")
 
     if data["user"] != "本週摘要":
+      print(f"將{function_call.name}修改為 -> get_qa_answer ")
       function_call.name = "get_qa_answer"
       function_call.arguments = str({"question": data["user"]})
 

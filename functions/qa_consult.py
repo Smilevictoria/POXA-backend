@@ -12,6 +12,8 @@ def GET_COMMON_QA(url, question):
         {"role": "assistant", "content": "你是一個專業的關鍵字分析師，會根據這16類對問題進行分析，16類有:用電大戶、光儲合一、市場資訊、E-dReg、sReg、dReg、即時備轉、補充備轉、創新能源技術、電價方案、再生能源、台電說明會、規範解析和台電供需資訊。請根據問題分析該問題符合這16類中的哪幾類，並使用繁體中文回覆。除此之外，請回覆問題中涉及的時間關鍵字，例如：本週、今天。如果問題符合多個類別，請列出所有相關的類別關鍵字。"},
         {"role": "user", "content": "本週市場情況摘要？"}, 
         {"role": "assistant", "content": "市場資訊,本週"},
+        {"role": "user", "content": "本週是否有台電新的公告？"}, 
+        {"role": "assistant", "content": "台電供需資訊,本週"},
         {"role": "user", "content": "幫我說明目前sReg價金的計算方式？"},
         {"role": "assistant", "content": "sReg,規範解析,目前"},
         {"role": "user", "content": "光儲的參與資格是？"},
@@ -77,7 +79,10 @@ def GET_COMMON_QA(url, question):
         return summarys[0]
     
 def get_data_from_web(main_url, new_answer):
-    driver = webdriver.Chrome()
+    options = webdriver.ChromeOptions()
+    options.add_argument("--headless")
+    driver = webdriver.Chrome(options=options)
+    # driver = webdriver.Chrome()
     url  = main_url
     driver.get(url)
 
